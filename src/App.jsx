@@ -4,6 +4,7 @@ import Product1 from "./components/Product1";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "./components/Styles.css";
 
 function App() {
   return (
