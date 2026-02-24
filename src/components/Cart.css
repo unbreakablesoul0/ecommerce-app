@@ -1,7 +1,7 @@
 .cart-container {
   padding: 140px 20px 60px;
   min-height: 70vh;
-  background: #9bb870;
+  background: linear-gradient(135deg, #e0f7fa 0%, #87cefa 100%);
   text-align: center;
 }
 

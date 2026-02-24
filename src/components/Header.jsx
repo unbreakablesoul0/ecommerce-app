@@ -23,19 +23,20 @@ function Header() {
         {isLoggedIn && (
           <>
             <Link to="/products">Products</Link>
-            <Link to="/cart">Cart</Link>
+            {role !== "admin" && <Link to="/cart">Cart</Link>}
           </>
         )}
         {!isLoggedIn && <Link to="/login">Login</Link>}
       </nav>
 
       {username && (
-        <>
-          Welcome, {username} ({role}) |
+        <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+          <span>
+            Welcome, {username} ({role})
+          </span>
           <button
             onClick={handleLogout}
             style={{
-              marginLeft: "10px",
               background: "red",
               color: "white",
               border: "none",
@@ -46,7 +47,7 @@ function Header() {
           >
             Logout
           </button>
-        </>
+        </div>
       )}
     </header>
   );

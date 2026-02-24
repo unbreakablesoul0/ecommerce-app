@@ -1,4 +1,4 @@
- import { useState } from "react";
+ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -9,6 +9,13 @@ function Login() {
   const [isSignupMode, setIsSignupMode] = useState(false);
   const [role, setRole] = useState("user");
   const navigate = useNavigate();
+
+  // clear inputs when switching between login/signup
+  useEffect(() => {
+    setUsername("");
+    setPassword("");
+    setRole("user");
+  }, [isSignupMode]);
 
   const handleLogin = () => {
     let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -69,26 +76,25 @@ function Login() {
     <>
       <Header />
 
-      <div className={`auth-container ${isSignupMode ? 'signup' : 'login'}`}>
-        <div className="icon">🛡️</div>
-        <h2>{isSignupMode ? "Create Account" : "Welcome Back"}</h2>
+      <div className={`auth-page ${isSignupMode ? 'signup' : 'login'}`}>
+        <div className="auth-form">
+          <h2>{isSignupMode ? "Create Account" : "Login Now"}</h2>
 
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Email or Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
 
-        {isSignupMode && (
-          <>
+          {isSignupMode && (
             <select
               value={role}
               onChange={e => setRole(e.target.value)}
@@ -96,24 +102,28 @@ function Login() {
               <option value="user">User</option>
               <option value="admin">Admin</option>
             </select>
-          </>
-        )}
+          )}
 
-        {isSignupMode ? (
-          <>
-            <button onClick={handleSignup}>Signup</button>
-            <p onClick={() => setIsSignupMode(false)}>
-              Already have an account?
-            </p>
-          </>
-        ) : (
-          <>
-            <button onClick={handleLogin}>Login</button>
-            <p onClick={() => setIsSignupMode(true)}>
-              Create account?
-            </p>
-          </>
-        )}
+          <button onClick={isSignupMode ? handleSignup : handleLogin}>
+            {isSignupMode ? 'Create' : 'Login'}
+          </button>
+
+          <div className="alternate">
+            {isSignupMode ? (
+              <p>
+                Already a member? <span onClick={() => setIsSignupMode(false)}>Login</span>
+              </p>
+            ) : (
+              <p>
+                Not a member? <span onClick={() => setIsSignupMode(true)}>Signup now</span>
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="auth-illustration">
+          {/* placeholder illustration, you can replace with real image */}
+        </div>
       </div>
 
       <Footer />

@@ -1,16 +1,29 @@
  /* ===== Global ===== */
+:root {
+  --primary: #0a3d62;
+  --accent: #007bff;
+  --lightest: #f0f8ff;
+  --bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #87cefa 100%);
+  --card-bg: #ffffff;
+  --text-dark: #222;
+}
+
 body {
   margin: 0;
-  font-family: 'Times New Roman';
-  background-color: #91b26c;
-
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  /* remove extra padding */
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
 }
 
 /* ===== Header ===== */
 header {
-  background-color: black;
+  background-color: var(--primary);
   color: white;
-  padding: 10px 20px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,19 +32,27 @@ header {
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
-  font-style: italic;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
 nav a {
   text-decoration: none;
   margin: 0 20px;
-  font-size: 20px;
-  color: white;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 nav a:hover {
-  text-decoration: underline;
-  color: #0ef30a;
+  background: rgba(255,255,255,0.15);
 }
 
 /* Username display */
@@ -43,41 +64,44 @@ nav a:hover {
 /* ===== Footer ===== */
 footer {
   text-align: center;
-  padding: 10px;
-  background-color: black;
+  padding: 15px 0;
+  background-color: var(--primary);
   color: white;
   position: fixed;
   width: 100%;
   bottom: 0;
+  font-size: 14px;
 }
 
 /* ===== Home Content ===== */
 .content {
   text-align: center;
-  padding-top: 140px;
-  padding-bottom: 60px;
-  background: linear-gradient(to right, pink, #2e3de5);
-  color: rgb(15, 11, 11);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: transparent;
 }
 
+/* ===== Buttons ===== */
 .btn {
   display: inline-block;
   margin-top: 30px;
-  background-color: white;
-  color: #0b0306;
-  padding: 10px 20px;
-  border-radius: 5px;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.2s;
 }
 
 .btn:hover {
-  background-color: #f3f3f3;
+  background-color: #0056b3;
 }
 
 /* ===== Highlights ===== */
 .highlights {
-  background: rgb(112, 228, 176);
+  background: #cceeff;
   padding: 30px;
   margin: 40px auto 80px;
   width: 80%;
@@ -101,139 +125,152 @@ footer {
 }
 
 /* ===== Products Page ===== */
+.product-page {
+  padding-top: 40px;
+}
+
 .products {
-  padding: 140px 40px 120px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  background-color: #91b26c;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* ===== Product Card ===== */
 .card {
-  background: rgb(245, 200, 200);
+  background: #ffffff;
   padding: 20px;
   text-align: center;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
 }
 
 .card img {
   width: 100%;
   height: 220px;
   object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .card h3 {
-  margin: 15px 0 10px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 12px 0 8px;
+  font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+  color: #333;
 }
 
 .card p {
   font-size: 18px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  color: #444;
 }
 
-/* ===== Button ===== */
 .card button {
-  background: rgb(144, 34, 191);
+  background: var(--accent);
   color: white;
   border: none;
   padding: 10px 16px;
   cursor: pointer;
   margin-top: 10px;
   border-radius: 5px;
-}
-
-.card button:hover {
-  background: darkgreen;
-}
-
-/* ===== Login/Signup Page ===== */
-.auth-container {
-  max-width: 400px;
-  margin: 160px auto 60px;
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  text-align: center;
-  position: relative;
-  transition: background 0.3s;
-}
-
-.auth-container.login {
-  background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
-}
-.auth-container.signup {
-  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-}
-
-.auth-container h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.auth-container input,
-.auth-container select {
-  padding: 10px;
-  width: 100%;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.auth-container input:focus,
-.auth-container select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 3px rgba(0,123,255,0.5);
-}
-
-.auth-container button {
-  width: 100%;
-  padding: 12px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
   transition: background 0.2s;
 }
 
-.auth-container button:hover {
+.card button:hover {
   background: #0056b3;
 }
 
-.auth-container p {
-  margin-top: 12px;
-  color: #007bff;
-  cursor: pointer;
+/* ===== Auth Pages ===== */
+ .auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* full screen height */
+  background: linear-gradient(135deg, #e0f7fa 0%, #d0e8ff 100%);
+  padding: 0; /* no extra spacing */
 }
 
-.auth-container p:hover {
+
+.auth-form {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 20px;
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.auth-form h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.auth-form input,
+.auth-form select {
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+  background: var(--lightest);
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(0,123,255,0.4);
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background 0.2s;
+}
+
+.auth-form button:hover {
+  background: #0056b3;
+}
+
+.auth-form .alternate {
+  margin-top: 20px;
+}
+
+.auth-form .alternate p span {
+  color: var(--accent);
+  cursor: pointer;
   text-decoration: underline;
 }
 
-/* icons inside container */
-.auth-container .icon {
-  font-size: 48px;
-  margin-bottom: 10px;
-  color: #555;
+/* ===== Auth Illustration ===== */
+.auth-illustration {
+  flex: 1;
+  background: url('/bg.jpg') center/cover no-repeat;
+  border-radius: 0 15px 15px 0;
 }
 
-/* ===== Admin add product form ===== */
+/* ===== Admin Form ===== */
 .admin-form {
   max-width: 500px;
-  margin: 140px auto 20px;
+  margin: 40px auto;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -266,4 +303,3 @@ footer {
 .admin-form button:hover {
   background: #095;
 }
-
